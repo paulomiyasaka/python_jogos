@@ -9,7 +9,45 @@
   </head>
   <body>
 
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/novo">Cadastrar</a>
+            </li>
+                       
+          </ul>
+          
+          <a class="btn btn-primary d-flex" href="/logout">Logout</a>
+            
+        
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
+  
+
+      <div class="row">
+      <div class="col-mb-12">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul id="messages" class="list-unstyled">
+          {% for message in messages %}
+            <li class="alert alert-success">
+              {{ message }}
+            </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+      </div>
+  </div>
+
         <div class="page-header">
             <h1>{{ titulo }}</h1>
         </div>
