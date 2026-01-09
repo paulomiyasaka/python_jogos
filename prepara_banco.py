@@ -5,9 +5,12 @@ print("Tentando ")
 try:
       print("Conectar...")
       conn = mysql.connector.connect(
-            host = 'mbs10065305',
-            user = 'root_python',
-            password = '@python@',
+            #host = 'mbs10065305',
+            #user = 'root_python',
+            #password = '@python@',
+            host = 'localhost',
+            user = 'root',
+            password = '',
             port = '3306',
             use_pure=True
       )   
@@ -24,7 +27,7 @@ cursor = conn.cursor()
 
 #cursor.execute("DROP DATABASE IF EXISTS `jogoteca`;")
 
-#cursor.execute("CREATE DATABASE IF NOT EXISTS `jogoteca`;")
+cursor.execute("CREATE DATABASE IF NOT EXISTS `jogoteca`;")
 
 cursor.execute("USE `jogoteca`;")
 
