@@ -5,12 +5,12 @@ print("Tentando ")
 try:
       print("Conectar...")
       conn = mysql.connector.connect(
-            #host = 'mbs10065305',
-            #user = 'root_python',
-            #password = '@python@',
-            host = 'localhost',
-            user = 'root',
-            password = '',
+            host = 'mbs10065305',
+            user = 'root_python',
+            password = '@python@',
+            #host = 'localhost',
+            #user = 'root',
+            #password = '',
             port = '3306',
             use_pure=True
       )   
@@ -67,9 +67,9 @@ for tabela_nome in TABLES:
 # inserindo usuarios
 usuario_sql = 'INSERT INTO usuarios (nome, usuario, senha) VALUES (%s, %s, %s)'
 usuarios = [
-      ("Bruno Divino", "BD", "alohomora"),
-      ("Camila Ferreira", "Mila", "paozinho"),
-      ("Guilherme Louro", "Cake", "python_eh_vida")
+      ("Paulo", "Paulo", "123456"),
+      ("Miyasaka", "Miyasaka", "123456"),
+      ("Japão", "Japão", "123456")
 ]
 cursor.executemany(usuario_sql, usuarios)
 
