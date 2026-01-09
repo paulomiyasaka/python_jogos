@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
+from flask_sqlalchemy import SQLAlchemy
 
 class Jogo:
     def __init__(self, nome, categoria, console):
@@ -31,6 +32,21 @@ usuarios = {
 
 app = Flask(__name__)
 app.secret_key = 'CORREIOS'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = \
+    '{SGBD}://{usuario}:{senha}@{servidor}/{database}'.format(
+        SGBD = 'mysql+mysqlconnector',
+        #usuario = 'root_python',
+        #senha = '@python@',
+        #servidor = 'MBS10065305',
+        usuario = 'root',
+        senha = '',
+        servidor = 'localhost',
+        database = 'jogoteca'
+    )
+
+db = SQLAlchemy(app)
+
 
 
 @app.route('/')
@@ -79,7 +95,9 @@ def autenticar():
         else:
             flash('Usuário não logado.')
             return redirect(url_for('login', proxima=url_for('novo')))
-    
+    else:
+        flash('Informe o usuário e senha válidos.')
+        return redirect(url_for('login', proxima=url_for('novo')))
 
 
 @app.route('/logout')
