@@ -1,25 +1,33 @@
 {% extends "template.html" %}
 {% block conteudo %}
 
-<form action="{{ url_for('atualizar') }}" method="POST" enctype="multipart/form-data">
-    <div class="input-group mb-3">
-        <input type="file" class="form-control" id="arquivo" name="arquivo" accept=".jpg">
-        <label class="input-group-text" for="arquivo">Selecionar</label>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-3">
+        <form action="{{ url_for('atualizar') }}" method="POST" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+                <figure class="figure img-thumbnail">
+                    <label>
+                        <img src="{{ url_for('imagem', nome_arquivo=capa_jogo) }}" class="figure-img img-fluid rounded">
+                    </label>
+                    <input type="file" class="form-control" id="arquivo" name="arquivo" accept=".jpg">
+                </figure>
+            </div>
+            <div class="mb-3">
+                <input type="hidden" name="id" value="{{ jogo.id }}">
+                <label for="nome" class="form-label">Nome do Jogo:</label>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{ jogo.nome }}">
+            </div>
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoria:</label>
+                <input type="text" class="form-control" id="categoria" name="categoria" value="{{ jogo.categoria }}">
+            </div>
+            <div class="mb-3">
+                <label for="console" class="form-label">Console:</label>
+                <input type="text" class="form-control" id="console" name="console" value="{{ jogo.console }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </form>
     </div>
-    <div class="mb-3">
-        <input type="hidden" name="id" value="{{ jogo.id }}">
-        <label for="nome" class="form-label">Nome do Jogo:</label>
-        <input type="text" class="form-control" id="nome" name="nome" value="{{ jogo.nome }}">
-    </div>
-    <div class="mb-3">
-        <label for="categoria" class="form-label">Categoria:</label>
-        <input type="text" class="form-control" id="categoria" name="categoria" value="{{ jogo.categoria }}">
-    </div>
-    <div class="mb-3">
-        <label for="console" class="form-label">Console:</label>
-        <input type="text" class="form-control" id="console" name="console" value="{{ jogo.console }}">
-    </div>
-    <button type="submit" class="btn btn-primary">Atualizar</button>
-</form>
+</div>
 
 {% endblock %}
