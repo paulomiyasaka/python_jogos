@@ -1,4 +1,5 @@
 from urllib.parse import quote_plus 
+import os
 
 SECRET_KEY = 'CORREIOS'
 #app.secret_key = 'CORREIOS'
@@ -21,9 +22,10 @@ SQLALCHEMY_DATABASE_URI = (
         #SGBD = 'mysql+mysqlconnector',
         #usuario = "root_python",
         #senha = quote_plus('python-cdip-bsb'),
-        usuario = "root_python",
-        senha = quote_plus("python-cdip-bsb"),
-        host = "mbs10065305" ,
+        #host = "mbs10065305",
+        usuario = "root",
+        senha = '',
+        host = "localhost" ,
         porta = 3306,
         banco = "jogoteca",
     )
@@ -37,3 +39,5 @@ SQLALCHEMY_ENGINE_OPTIONS= {
     "pool_pre_ping": True,
     "pool_recycle": 1800
 }
+
+UPLOAD_PATH = os.path.dirname(os.path.abspath(__file__)) + '/uploads'

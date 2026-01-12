@@ -7,6 +7,8 @@
                     <th>Nome</th>
                     <th>Categoria</th>
                     <th>Console</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>
@@ -15,6 +17,18 @@
                     <td>{{ jogo.nome }}</td>
                     <td>{{ jogo.categoria }}</td>
                     <td>{{ jogo.console }}</td>
+                    <td><a href="{{ url_for('editar', id=jogo.id) }}">
+                            <svg class="bi" width="24" height="24" fill="currentColor">
+                                <use xlink:href="{{ url_for('static', filename='bootstrap-icons.svg') }}#pencil-square"/>
+                            </svg>
+                        </a>
+                    </td>
+                    <td><a href="{{ url_for('deletar', id=jogo.id) }}">
+                            <svg class="bi" width="24" height="24" fill="#000000">
+                                <use xlink:href="{{ url_for('static', filename='bootstrap-icons.svg') }}#trash"/>
+                            </svg>
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
