@@ -1,20 +1,32 @@
 {% extends "template.html" %}
 {% block conteudo %}
 
-<form action="{{ url_for('criar') }}" method="POST">
-    <div class="mb-3">
-        <label for="nome" class="form-label">Nome do Jogo:</label>
-        <input type="text" class="form-control" id="nome" name="nome">
+<div class="row d-flex justify-content-center">
+    <div class="col-md-3">
+        <form action="{{ url_for('criar') }}" method="POST" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+                <figure class="figure img-thumbnail">
+                    <label>
+                        <img src="{{ url_for('imagem', nome_arquivo='capa_padrao.jpg') }}" class="figure-img img-fluid rounded">
+                    </label>
+                    <input type="file" class="form-control" id="arquivo" name="arquivo" accept=".jpg">
+                </figure>
+            </div>
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome do Jogo:</label>
+                <input type="text" class="form-control" id="nome" name="nome">
+            </div>
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoria:</label>
+                <input type="text" class="form-control" id="categoria" name="categoria">
+            </div>
+            <div class="mb-3">
+                <label for="console" class="form-label">Console:</label>
+                <input type="text" class="form-control" id="console" name="console">
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
     </div>
-    <div class="mb-3">
-        <label for="categoria" class="form-label">Categoria:</label>
-        <input type="text" class="form-control" id="categoria" name="categoria">
-    </div>
-    <div class="mb-3">
-        <label for="console" class="form-label">Console:</label>
-        <input type="text" class="form-control" id="console" name="console">
-    </div>
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-</form>
+</div>
 
 {% endblock %}
