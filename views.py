@@ -1,6 +1,8 @@
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from jogoteca import app, db
 from models import Jogos, Usuarios
+from helpers import recupera_imagem, deleta_imagem
+import time
 
 @app.route('/')
 def index():
@@ -33,7 +35,8 @@ def editar(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('editar')))
     jogo = Jogos.query.filter_by(id=id).first()
-    return render_template('editar.html', titulo='Editar jogo', jogo=jogo)
+    capa_jogo = recupera_imagem(id)
+    return render_template('editar.html', titulo='Editar jogo', jogo=jogo, capa_jogo=capa_jogo)
 
 
 @app.route('/criar', methods=['POST',])
@@ -55,7 +58,9 @@ def criar():
     db.session.commit()
 
     arquivo = request.files['arquivo']
-    arquivo.save(f'uploads/capa_{novoJogo.id}.jpg')
+    upload_path = app.config['UPLOAD_PATH']
+    timestamp = time.time()
+    arquivo.save(f'{upload_path}/capa_{novoJogo.id}-{timestamp}.jpg')
     
     flash('Jogo cadastrado com sucesso!')
     return redirect(url_for('index'))
@@ -72,7 +77,9 @@ def atualizar():
 
     arquivo = request.files['arquivo']
     upload_path = app.config['UPLOAD_PATH']
-    arquivo.save(f'{upload_path}/capa_{jogo.id}.jpg')
+    timestamp = time.time()
+    deleta_imagem(jogo.id)
+    arquivo.save(f'{upload_path}/capa_{jogo.id}-{timestamp}.jpg')
 
     flash('Jogo atualizado com sucesso!')
     return redirect(url_for('index'))
@@ -123,3 +130,4 @@ def logout():
 @app.route('/uploads/<nome_arquivo>')
 def imagem(nome_arquivo):
     return send_from_directory('uploads', nome_arquivo)
+

@@ -20,12 +20,12 @@ SQLALCHEMY_DATABASE_URI = (
     '{SGBD}://{usuario}:{senha}@{host}:{porta}/{banco}'.format(
         SGBD = 'mysql+pymysql',
         #SGBD = 'mysql+mysqlconnector',
-        #usuario = "root_python",
-        #senha = quote_plus('python-cdip-bsb'),
-        #host = "mbs10065305",
-        usuario = "root",
-        senha = '',
-        host = "localhost" ,
+        usuario = "root_python",
+        senha = quote_plus('python-cdip-bsb'),
+        host = "mbs10065305",
+        #usuario = "root",
+        #senha = '',
+        #host = "localhost" ,
         porta = 3306,
         banco = "jogoteca",
     )
