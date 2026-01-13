@@ -13,19 +13,39 @@
                 </figure>
             </div>
             <div class="mb-3">
-                <input type="hidden" name="id" value="{{ jogo.id }}">
+                {{ form.csrf_token() }}
+                <input type="hidden" name="id" value="{{ id }}">
+                {{ form.nome.label(class="form-label", for="nome") }}
+                {{ form.nome(class="form-control", value=form.nome.data) }}
+                <!--
                 <label for="nome" class="form-label">Nome do Jogo:</label>
-                <input type="text" class="form-control" id="nome" name="nome" value="{{ jogo.nome }}">
+                <input type="text" class="form-control" id="nome" name="nome" value="">
+                -->
             </div>
             <div class="mb-3">
+                {{ form.categoria.label(class="form-label", for="categoria") }}
+                {{ form.categoria(class="form-control", value=form.categoria.data) }}
+                <!--
                 <label for="categoria" class="form-label">Categoria:</label>
-                <input type="text" class="form-control" id="categoria" name="categoria" value="{{ jogo.categoria }}">
+                <input type="text" class="form-control" id="categoria" name="categoria" value="">
+                -->
             </div>
             <div class="mb-3">
+                {{ form.console.label(class="form-label", for="console") }}
+                {{ form.console(class="form-control", value=form.console.data) }}
+                <!--
                 <label for="console" class="form-label">Console:</label>
-                <input type="text" class="form-control" id="console" name="console" value="{{ jogo.console }}">
+                <input type="text" class="form-control" id="console" name="console" value="">
+                -->
             </div>
+            <div class="mb-3">
+                {{ form.salvar(class="btn btn-primary") }}
+                <a class="btn btn-danger" href="{{ url_for('index') }}">Cancelar</a>
+            </div>
+            
+            <!--
             <button type="submit" class="btn btn-primary">Atualizar</button>
+            -->
         </form>
     </div>
 </div>
